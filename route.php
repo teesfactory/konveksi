@@ -36,6 +36,10 @@ function function_konveksi_konfigurasi() {
 	echo "<h2>Test Konveksi Apps</h2>";
 }
 
+function konveksi_form_simulasi_harga(){
+    return 'Follow us on <a rel="nofollow" href="https://www.facebook.com/ThemeXpert/">Facebook</a>';
+}
+add_shortcode('simulasi-harga', 'konveksi_form_simulasi_harga'); 
 
 
 ?>
