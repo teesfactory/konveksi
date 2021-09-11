@@ -1,4 +1,5 @@
 <?php
+require_once('libraries/dompdf/autoload.inc.php');
 
 include('controller/pelanggan_controller.php');
 include('controller/karyawan_controller.php');

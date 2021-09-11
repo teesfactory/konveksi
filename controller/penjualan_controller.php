@@ -1,8 +1,11 @@
 <?php
 
-
+use Dompdf\Dompdf;
 
 function function_konveksi_penjualan() {
+
+
+	$dompdf = new Dompdf();
 
 	global $wpdb;
 	$table_name   				= $wpdb->prefix . 'konveksi_apps_pelanggan';
@@ -242,6 +245,7 @@ function function_konveksi_penjualan() {
         echo "<script>location.replace('admin.php?page=konveksi-penjualan&pg=daftar');</script>";
 
 	}
+
 	else if (isset($_POST['del'])) {
 
 	  	$id 				= $_POST['id'];
@@ -261,6 +265,7 @@ function function_konveksi_penjualan() {
 	    echo "<script>location.replace('admin.php?page=konveksi-penjualan&pg=daftar');</script>";
 
 	}
+
 	else if (isset($_GET['edit'])) {
 
 	  	$id 					= $_GET['edit'];
@@ -327,6 +332,7 @@ function function_konveksi_penjualan() {
 	    require_once(ABSPATH . 'wp-content/plugins/konveksi/view/penjualan/edit.php');
 
 	}
+
 	else if (isset($_GET['bayar'])){
 		$id 					= $_GET['bayar'];
 		$data['masterjurnal'] 	= $wpdb->get_results( "SELECT * FROM ". $table_masterjurnal . " WHERE status=1");
@@ -384,7 +390,74 @@ function function_konveksi_penjualan() {
 	  								WHERE ath.id_transaksi = '". $id ."' 
 	  							  ");
 		require_once(ABSPATH . 'wp-content/plugins/konveksi/view/penjualan/bayar.php');
+	
 	}
+
+	else if (isset($_GET['cetak'])) {
+
+	  	$id 					= $_GET['cetak'];
+	  	$no_transaksi			= $wpdb->get_var( "SELECT REPLACE(no_transaksi,'/','.') AS no_transaksi FROM wp_konveksi_apps_transaksi_header WHERE id_transaksi='".$id."' LIMIT 0,1");
+	  	$data['transaksi'] 		= $wpdb->get_results( "
+	  							    SELECT
+										id_transaksi,
+										ath.no_transaksi,
+										ath.tanggal_transaksi,
+										ath.pengambilan,
+										ath.tipe,
+										ath.no_pelanggan,
+										ath.mata_uang,
+										ath.keterangan,
+										ath.sub_total,
+										ath.potongan,
+										ath.pajak,
+										ath.biaya_pengiriman,
+										ath.biaya_lain,
+										ath.total_akhir,
+										ath.cara_bayar,
+										ath.jumlah_tunai,
+										ath.jumlah_kredit,
+										ath.total_pembayaran,
+										ath.pos_code,
+										ath.sisa_pembayaran,
+										ata.no_transaksi_ref,
+										ata.nama_order,
+										ata.channel,
+										ata.segment,
+										ata.catatan_order
+									FROM wp_konveksi_apps_transaksi_header ath
+									LEFT JOIN wp_konveksi_apps_transaksi_addinfo ata ON ath.no_transaksi = ata.no_transaksi
+									WHERE ath.id_transaksi='".$id."'
+									LIMIT 1
+	  							  ");
+	  	$data['trx_detail']		= $wpdb->get_results( "
+									
+									SELECT 
+										atd.jumlah,
+										atd.kode_barang,
+										atd.keterangan,
+										atd.harga, 
+									    CONCAT('=A', @row_num:= @row_num + 1 , '*D' , @row_num:= @row_num  ) as subtotal
+									FROM 
+									    wp_konveksi_apps_transaksi_header AS ath, 
+									    (SELECT @row_num:= 0 AS num) AS c,
+									    wp_konveksi_apps_transaksi_detail atd 
+									WHERE ath.no_transaksi = atd.no_transaksi 
+											AND ath.id_transaksi='".$id."'
+	  							  ");
+
+		$fileContent = file_get_contents( ABSPATH . 'wp-content/plugins/konveksi/view/laporan/cetak_struk.php' ) ;
+
+		$dompdf->load_html($fileContent); 
+		$dompdf->render();    
+		$pdf = $dompdf->output();
+		$invnoabc = 'Invoice - '.$no_transaksi.'.pdf';
+		ob_end_clean();
+		$dompdf->stream($invnoabc);
+		exit;
+		
+
+	}
+
 	else if (isset($_POST['hutang-pembayaran'])){
 		
 		$no_transaksi 		= $_POST['no_transaksi'];
@@ -419,7 +492,9 @@ function function_konveksi_penjualan() {
         $wpdb->query($query2);
         
         echo "<script>location.replace('admin.php?page=konveksi-penjualan&pg=daftar');</script>";
+	
 	}
+
 	else if (isset($_POST['search-submit'])) {
 
 	  	$id 				= $_GET['edit'];
@@ -428,6 +503,7 @@ function function_konveksi_penjualan() {
 	    require_once(ABSPATH . 'wp-content/plugins/konveksi/view/pelanggan/edit.php');
 
 	}
+
 	else if (isset($_GET['pg']) AND $_GET['pg'] == 'daftar' ) {
 
 		$items_per_page = 15;
@@ -455,12 +531,14 @@ function function_konveksi_penjualan() {
 	    require_once(ABSPATH . 'wp-content/plugins/konveksi/view/penjualan/daftar.php');
 
 	}
+
 	else if (isset($_GET['pg']) AND $_GET['pg'] == 'penjualan-lainnya' ) {
 
 	  	$data['masterjurnal'] 	= $wpdb->get_results( "SELECT * FROM ". $table_masterjurnal . " WHERE status=1");
 		$data['list-barang'] 	= $wpdb->get_results( "SELECT kode_barang AS id, nama_barang AS name FROM ". $table_barang . " WHERE pos_code IN ('3130','3141','3149') ORDER BY kode_barang");
 
 	  	require_once(ABSPATH . 'wp-content/plugins/konveksi/view/penjualan/pendapatan-lain.php');
+	
 	}
 	else {
 
@@ -468,6 +546,7 @@ function function_konveksi_penjualan() {
 		$data['list-barang'] 	= $wpdb->get_results( "SELECT kode_barang AS id, nama_barang AS name FROM ". $table_barang . " WHERE pos_code IN ('1511','1519','3000') ORDER BY kode_barang");
 
 	  	require_once(ABSPATH . 'wp-content/plugins/konveksi/view/penjualan/index.php');
+	
 	}	
 	
 }
