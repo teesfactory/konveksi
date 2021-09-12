@@ -45,7 +45,7 @@
               <a href='admin.php?page=konveksi-penjualan&edit=<?php echo $print->id_transaksi; ?>' class='btn btn-outline-warning btn-sm'>  edit </a>
               <a href='admin.php?page=konveksi-penjualan&bayar=<?php echo $print->id_transaksi; ?>' class='btn btn-outline-success btn-sm'>  bayar </a>
               <a href="javascript:hapusAction(' <?php echo $print->id_transaksi; ?>')" class='btn btn-outline-danger btn-sm'>delete</a>
-              <a href='admin.php?page=konveksi-penjualan&cetak=<?php echo $print->id_transaksi; ?>' class='btn btn-outline-primary btn-sm'>  cetak </a>
+              <a href='admin.php?page=konveksi-penjualan&cetak=<?php echo $print->id_transaksi; ?>' class='btn btn-outline-primary btn-sm' target="blank">  cetak </a>
             </td>
           </tr>
           <?php
