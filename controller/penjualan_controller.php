@@ -449,7 +449,7 @@ function function_konveksi_penjualan() {
 											AND ath.id_transaksi='".$id."'
 	  							  ");
 
-	  	/*
+	  	
 		$fileContent = file_get_contents( ABSPATH . 'wp-content/plugins/konveksi/view/laporan/cetak_struk.php' ) ;
 		$dompdf->set_option('isRemoteEnabled', TRUE);
 		$dompdf->load_html($fileContent); 
@@ -459,8 +459,8 @@ function function_konveksi_penjualan() {
 		ob_end_clean();
 		$dompdf->stream($invnoabc);
 		exit;
-		*/
-		require_once(ABSPATH . 'wp-content/plugins/konveksi/view/laporan/cetak_struk.php');
+		
+		//require_once(ABSPATH . 'wp-content/plugins/konveksi/view/laporan/cetak_struk.php');
 		
 
 	}
