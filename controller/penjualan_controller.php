@@ -398,10 +398,13 @@ function function_konveksi_penjualan() {
 	  	$id 					= $_GET['cetak'];
 	  	$no_transaksi			= $wpdb->get_var( "SELECT REPLACE(no_transaksi,'/','.') AS no_transaksi FROM wp_konveksi_apps_transaksi_header WHERE id_transaksi='".$id."' LIMIT 0,1");
 	  	$data['transaksi'] 		= $wpdb->get_results( "
-	  							    SELECT
+									SELECT
 										id_transaksi,
 										ath.no_transaksi,
 										ath.tanggal_transaksi,
+										pel.nama,
+										pel.alamat,
+										pel.no_telp_1 as no_telp,
 										ath.pengambilan,
 										ath.tipe,
 										ath.no_pelanggan,
@@ -426,6 +429,7 @@ function function_konveksi_penjualan() {
 										ata.catatan_order
 									FROM wp_konveksi_apps_transaksi_header ath
 									LEFT JOIN wp_konveksi_apps_transaksi_addinfo ata ON ath.no_transaksi = ata.no_transaksi
+									LEFT JOIN wp_konveksi_apps_pelanggan pel ON ath.no_pelanggan = pel.no_pelanggan
 									WHERE ath.id_transaksi='".$id."'
 									LIMIT 1
 	  							  ");
@@ -445,7 +449,7 @@ function function_konveksi_penjualan() {
 											AND ath.id_transaksi='".$id."'
 	  							  ");
 
-	  	
+	  	/*
 		$fileContent = file_get_contents( ABSPATH . 'wp-content/plugins/konveksi/view/laporan/cetak_struk.php' ) ;
 		$dompdf->set_option('isRemoteEnabled', TRUE);
 		$dompdf->load_html($fileContent); 
@@ -455,8 +459,8 @@ function function_konveksi_penjualan() {
 		ob_end_clean();
 		$dompdf->stream($invnoabc);
 		exit;
-		
-		//require_once(ABSPATH . 'wp-content/plugins/konveksi/view/laporan/cetak_struk.php');
+		*/
+		require_once(ABSPATH . 'wp-content/plugins/konveksi/view/laporan/cetak_struk.php');
 		
 
 	}

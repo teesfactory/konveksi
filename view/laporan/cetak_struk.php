@@ -1,3 +1,12 @@
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+table{
+border-collapse: collapse;
+}
+font-family: 'Poppins', sans-serif;
+</style>
 <table width="100%">
 	<tr>
 		<td width='95%'></td>
@@ -20,13 +29,13 @@
 	</tr>
 	<tr>
 		<td width="15%">Nama</td>
-		<td width="35%"></td>
+		<td width="35%"><?php echo $data['transaksi'][0]->nama; ?></td>
 		<td width="15%">No. Telp</td>
-		<td width="35%"><?php echo $data['transaksi'][0]->no_transaksi; ?></td>
+		<td width="35%"><?php echo $data['transaksi'][0]->no_telp; ?></td>
 	</tr>
 	<tr>
 		<td width="15%">Alamat</td>
-		<td width="85%" colspan="3"></td>
+		<td width="85%" colspan="3"><?php echo $data['transaksi'][0]->alamat; ?></td>
 	</tr>
 </table>
 
