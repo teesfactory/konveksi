@@ -21,14 +21,15 @@ function konveksi_master() {
 	if ( $roles[0] == 'administrator' ) {
 
 	add_submenu_page('konveksi','Karyawan','Manage Karyawan','edit_pages','konveksi-karyawan','function_konveksi_karyawan');
-
-	
-	}
-	
-	add_submenu_page('konveksi','Pendapatan','Pendapatan','edit_pages','konveksi-penjualan','function_konveksi_penjualan');
 	add_submenu_page('konveksi','Pengeluaran','Pengeluaran','edit_pages','konveksi-pengeluaran','function_konveksi_pengeluaran');
 	add_submenu_page('konveksi','Jurnal','Jurnal','edit_pages','konveksi-jurnal','function_konveksi_jurnal');
 	add_submenu_page('konveksi','Konfigurasi','Konfigurasi','edit_pages','konveksi-konfigurasi','function_konveksi_konfigurasi');
+	
+	}
+	
+	add_submenu_page('konveksi','Penjualan','Penjualan','edit_pages','konveksi-penjualan','function_konveksi_penjualan');
+	add_submenu_page('konveksi','Tracking Progress','Tracking Progress','edit_pages','konveksi-tracking-progress','function_konveksi_tracking_progress');
+
 }
 add_action('admin_menu','konveksi_master');
 
