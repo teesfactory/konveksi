@@ -6,6 +6,7 @@ include('controller/karyawan_controller.php');
 include('controller/penjualan_controller.php');
 include('controller/pengeluaran_controller.php');
 include('controller/jurnal_controller.php');
+include('controller/tracking_controller.php');
 
 
 
@@ -22,8 +23,8 @@ function konveksi_master() {
 
 	add_submenu_page('konveksi','Karyawan','Manage Karyawan','edit_pages','konveksi-karyawan','function_konveksi_karyawan');
 	add_submenu_page('konveksi','Pengeluaran','Pengeluaran','edit_pages','konveksi-pengeluaran','function_konveksi_pengeluaran');
-	add_submenu_page('konveksi','Jurnal','Jurnal','edit_pages','konveksi-jurnal','function_konveksi_jurnal');
-	add_submenu_page('konveksi','Konfigurasi','Konfigurasi','edit_pages','konveksi-konfigurasi','function_konveksi_konfigurasi');
+	//add_submenu_page('konveksi','Jurnal','Jurnal','edit_pages','konveksi-jurnal','function_konveksi_jurnal');
+	//add_submenu_page('konveksi','Konfigurasi','Konfigurasi','edit_pages','konveksi-konfigurasi','function_konveksi_konfigurasi');
 	
 	}
 	
@@ -34,13 +35,9 @@ function konveksi_master() {
 add_action('admin_menu','konveksi_master');
 
 
-function function_konveksi_konfigurasi() {
-	echo "<h2>Test Konveksi Apps</h2>";
-}
-
-function function_konveksi_master() {
-	echo "<h2>Test Konveksi Apps</h2>";
-}
+// function function_konveksi_konfigurasi() {
+// 	echo "<h2>Test Konveksi Apps</h2>";
+// }
 
 function konveksi_form_simulasi_harga(){
     return 'Follow us on <a rel="nofollow" href="https://www.facebook.com/ThemeXpert/">Facebook</a>';
