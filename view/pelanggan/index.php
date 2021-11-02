@@ -41,7 +41,7 @@
             <td><?php echo $print->email_1; ?></td>
             <td>
             	<a href='admin.php?page=konveksi-pelanggan&edit=<?php echo $print->id_pelanggan; ?>' class='btn btn-outline-warning btn-sm'>edit</a>
-            	<a href="javascript:hapusAction(' <?php echo $print->id_pelanggan; ?>')" class='btn btn-outline-danger btn-sm'>delete</a>
+            	<!--<a href="javascript:hapusAction(' <?php echo $print->id_pelanggan; ?>')" class='btn btn-outline-danger btn-sm'>delete</a> -->
             </td>
           </tr>
           <?php
