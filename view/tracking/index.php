@@ -1,6 +1,8 @@
 <style type="text/css">
 	.uppercase { text-transform: uppercase; }
 	.lowercase { text-transform: lowercase; }
+  .small { 
+            font-size:6px; padding:1px; }
 </style>
 
 <div class="wrap container-fluid">
@@ -8,30 +10,21 @@
     
 	<hr class="wp-header-end">
 	<ul class="subsubsub">
-		<li class="all"><a href="edit.php?post_type=post" class="current" aria-current="page">Semua <span class="count">(1)</span></a> |</li>
-		<li class="publish"><a href="edit.php?post_status=publish&amp;post_type=post">Telah Terbit <span class="count">(1)</span></a></li>
-	</ul>
-	<p class="search-box">
-		<form action="admin.php?page=konveksi-pelanggan" method="post" style="float:right;">
-			<label class="screen-reader-text" for="post-search-input">Cari Pelanggan:</label>
-			<input type="search" id="post-search-input" name="s" value="">
-			<input type="submit" id="search-submit" class="button" value="Cari Pos">
-		</form>
-	</p>    
+
+	</ul>    
     <table class="wp-list-table widefat striped table" width="100%">
       <thead>
         <tr>
-          <th width="8%">Dateline</th>
-          <th width="25%">No. Transaksi</th>
-          <th width="25%">Marketing</th>
-          <th width="25%">Customer</th>
-          <th width="20%">Nama Order</th>
-          <th width="5%">WO</th>
-          <th width="5%">Film</th>
-          <th width="5%">Jahit</th>
-          <th width="5%">Sablon</th>
-          <th width="5%">Packing</th>
-          <th width="5%">Finish</th>
+          <th width="15%">Dateline</th>
+          <th width="15%">No. Transaksi</th>
+          <th width="15%">Marketing</th>
+          <th width="40%">Customer ~ Nama Order</th>
+          <th width="3%">WO</th>
+          <th width="3%">Film</th>
+          <th width="3%">Jahit</th>
+          <th width="3%">Sablon</th>
+          <th width="3%">Packing</th>
+          <th width="3%">Finish</th>
 
         </tr>
       </thead>
@@ -42,17 +35,64 @@
 
           ?>
           <tr>
-            <td><?php echo $print->dateline; ?></td>
-            <td><?php echo $print->no_transaksi; ?></td>
-            <td><?php echo $print->marketing; ?></td>
-            <td><?php echo $print->cust; ?></td>
-            <td><?php echo $print->nama_order; ?></td>
-            <td><?php echo $print->work_order; ?></td>
-            <td><?php echo $print->film; ?></td>
-            <td><?php echo $print->jahit; ?></td>
-            <td><?php echo $print->sablon; ?></td>
-            <td><?php echo $print->packing; ?></td>
-            <td><?php echo $print->finish; ?></td>
+            <td class="small"><?php echo $print->dateline; ?></td>
+            <td class="small"><?php echo $print->no_transaksi; ?></td>
+            <td class="small"><?php echo $print->marketing; ?></td>
+            <td class="small"><?php echo $print->cust .' ~ '.$print->nama_order; ?></td>
+            <td class="small">
+              <?php 
+                    if ( $print->work_order == 0 ) {
+                      echo "<i class='fas fa-circle' style='color:red'></i>";
+                    }else{
+                      echo "<i class='fas fa-check-circle' style='color:green'></i>";
+                    }                              
+              ?>
+            </td>
+            <td class="small">
+              <?php 
+                    if ( $print->film == 0 ) {
+                      echo "<i class='fas fa-circle' style='color:red'></i>";
+                    }else{
+                      echo "<i class='fas fa-check-circle' style='color:green'></i>";
+                    }                              
+              ?>
+            </td>
+            <td class="small">
+              <?php 
+                    if ( $print->jahit == 0 ) {
+                      echo "<i class='fas fa-circle' style='color:red'></i>";
+                    }else{
+                      echo "<i class='fas fa-check-circle' style='color:green'></i>";
+                    }                              
+              ?>
+            </td>
+            <td class="small">
+              <?php 
+                    if ( $print->sablon == 0 ) {
+                      echo "<i class='fas fa-circle' style='color:red'></i>";
+                    }else{
+                      echo "<i class='fas fa-check-circle' style='color:green'></i>";
+                    }                              
+              ?>
+            </td>
+            <td class="small">
+              <?php 
+                    if ( $print->pakcing == 0 ) {
+                      echo "<i class='fas fa-circle' style='color:red'></i>";
+                    }else{
+                      echo "<i class='fas fa-check-circle' style='color:green'></i>";
+                    }                              
+              ?>
+            </td>
+            <td class="small">
+              <?php 
+                    if ( $print->finish == 0 ) {
+                      echo "<i class='fas fa-circle' style='color:red'></i>";
+                    }else{
+                      echo "<i class='fas fa-check-circle' style='color:green'></i>";
+                    }                              
+              ?>
+            </td>
           </tr>
           <?php
       	  }

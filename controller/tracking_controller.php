@@ -2,6 +2,7 @@
 
 	function function_konveksi_tracking_progress() {
 
+		global $wpdb;
 		$user = wp_get_current_user();
 
 		echo '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">';
@@ -10,6 +11,7 @@
 		echo "<script src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous'></script>";
 		echo "<script src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx' crossorigin='anonymous'></script>";
 		echo "<script src='".plugin_dir_url( dirname( __FILE__ ) ) . "assets/js/select2.min.js'></script>";
+		echo "<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>";
 
 		$items_per_page = 15;
 		$page = isset( $_GET['cpage'] ) ? abs( (int) $_GET['cpage'] ) : 1;
@@ -35,10 +37,10 @@
 					WHERE pos_code IN ('001','002')
 				 ";
 
-		$total_query = "SELECT COUNT(1) FROM (${query}) AS combined_table";
+		$total_query = "SELECT COUNT(1) FROM ($query) AS combined_table";
 		$total = $wpdb->get_var( $total_query );
 
-		$results = $wpdb->get_results( $query.' ORDER BY pengambilan DESC LIMIT '. $offset.', '. $items_per_page, OBJECT );
+		$results = $wpdb->get_results( $query.' ORDER BY dateline DESC LIMIT '. $offset.', '. $items_per_page, OBJECT );
 
 	  	 require_once(ABSPATH . 'wp-content/plugins/konveksi/view/tracking/index.php');
 
