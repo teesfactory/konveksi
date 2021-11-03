@@ -42,55 +42,55 @@
             <td class="small">
               <?php 
                     if ( $print->work_order == 0 ) {
-                      echo "<i class='fas fa-circle' style='color:red'></i>";
+                      echo "<span class='dashicons dashicons-dismiss'  style='color:red'></span>";
                     }else{
-                      echo "<i class='fas fa-check-circle' style='color:green'></i>";
+                      echo "<span class='dashicons dashicons-yes-alt'  style='color:green'></span>";
                     }                              
               ?>
             </td>
             <td class="small">
               <?php 
                     if ( $print->film == 0 ) {
-                      echo "<i class='fas fa-circle' style='color:red'></i>";
+                      echo "<span class='dashicons dashicons-dismiss'  style='color:red'></span>";
                     }else{
-                      echo "<i class='fas fa-check-circle' style='color:green'></i>";
+                      echo "<span class='dashicons dashicons-yes-alt'  style='color:green'></span>";
                     }                              
               ?>
             </td>
             <td class="small">
               <?php 
                     if ( $print->jahit == 0 ) {
-                      echo "<i class='fas fa-circle' style='color:red'></i>";
+                      echo "<span class='dashicons dashicons-dismiss'  style='color:red'></span>";
                     }else{
-                      echo "<i class='fas fa-check-circle' style='color:green'></i>";
-                    }                              
+                      echo "<span class='dashicons dashicons-yes-alt'  style='color:green'></span>";
+                    }                            
               ?>
             </td>
             <td class="small">
               <?php 
                     if ( $print->sablon == 0 ) {
-                      echo "<i class='fas fa-circle' style='color:red'></i>";
+                      echo "<span class='dashicons dashicons-dismiss'  style='color:red'></span>";
                     }else{
-                      echo "<i class='fas fa-check-circle' style='color:green'></i>";
-                    }                              
+                      echo "<span class='dashicons dashicons-yes-alt'  style='color:green'></span>";
+                    }                            
               ?>
             </td>
             <td class="small">
               <?php 
                     if ( $print->pakcing == 0 ) {
-                      echo "<i class='fas fa-circle' style='color:red'></i>";
+                      echo "<span class='dashicons dashicons-dismiss'  style='color:red'></span>";
                     }else{
-                      echo "<i class='fas fa-check-circle' style='color:green'></i>";
-                    }                              
+                      echo "<span class='dashicons dashicons-yes-alt'  style='color:green'></span>";
+                    }                             
               ?>
             </td>
             <td class="small">
               <?php 
                     if ( $print->finish == 0 ) {
-                      echo "<i class='fas fa-circle' style='color:red'></i>";
+                      echo "<span class='dashicons dashicons-dismiss'  style='color:red'></span>";
                     }else{
-                      echo "<i class='fas fa-check-circle' style='color:green'></i>";
-                    }                              
+                      echo "<span class='dashicons dashicons-yes-alt'  style='color:green'></span>";
+                    }                             
               ?>
             </td>
           </tr>
