@@ -15,10 +15,10 @@
     <table class="wp-list-table widefat striped table" width="100%">
       <thead>
         <tr>
-          <th width="15%">Dateline</th>
+          <th width="10%">Dateline</th>
           <th width="15%">No. Transaksi</th>
-          <th width="15%">Marketing</th>
-          <th width="40%">Customer ~ Nama Order</th>
+          <th width="25%">Customer</th>
+          <th width="30%">Nama Order</th>
           <th width="3%">WO</th>
           <th width="3%">Film</th>
           <th width="3%">Jahit</th>
@@ -37,8 +37,8 @@
           <tr>
             <td class="small"><?php echo $print->dateline; ?></td>
             <td class="small"><?php echo $print->no_transaksi; ?></td>
-            <td class="small"><?php echo $print->marketing; ?></td>
-            <td class="small"><?php echo $print->cust .' ~ '.$print->nama_order; ?></td>
+            <td class="small"><?php echo $print->cust; ?></td>
+            <td class="small"><?php echo $print->nama_order; ?></td>
             <td class="small">
               <?php 
                     if ( $print->work_order == 0 ) {
