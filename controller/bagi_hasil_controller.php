@@ -21,7 +21,7 @@ function function_konveksi_bagi_hasil() {
                     SELECT
                         a.tanggal_transaksi,
                         c.nama_order,
-                        d.display_name as marketing,
+                        d.display_name,
                         a.total_akhir as pendapatan,
                         b.hpp,
                         a.total_akhir - b.hpp as gross_profit,
@@ -53,6 +53,7 @@ function function_konveksi_bagi_hasil() {
 
 		$results = $wpdb->get_results( $query.' ORDER BY tanggal_transaksi DESC LIMIT '. $offset.', '. $items_per_page, OBJECT );
         
+        //echo json_encode($results); 
         require_once(ABSPATH . 'wp-content/plugins/konveksi/view/bagi_hasil/index.php');
     
 

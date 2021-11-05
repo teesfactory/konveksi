@@ -16,8 +16,8 @@
       <thead>
         <tr>
           <th width="10%">Tanggal</th>
-          <th width="30%">Nama Order</th>
-          <th width="5%">Marketing</th>
+          <th width="23%">Nama Order</th>
+          <th width="7%">Marketing</th>
           <th width="5%">Pendapatan</th>
           <th width="5%">HPP</th>
           <th width="10%">Gross Profit</th>
@@ -37,14 +37,14 @@
           <tr>
             <td class="small"><?php echo $print->tanggal_transaksi; ?></td>
             <td class="small"><?php echo $print->nama_order; ?></td>
-            <td class="small"><?php echo $print->marketing; ?></td>
-            <td class="small"><?php number_format($print->pendapatan,2,",","."); ?></td>
-            <td class="small"><?php number_format($print->hpp,2,",","."); ?></td>
-            <td class="small"><?php number_format($print->gross_profit,2,",","."); ?></td>
-            <td class="small"><?php number_format($print->operasional,2,",","."); ?></td>
-            <td class="small"><?php number_format($print->equity,2,",","."); ?></td>
-            <td class="small"><?php number_format($print->production,2,",","."); ?></td>
-            <td class="small"><?php number_format($print->marketing,2,",","."); ?></td>
+            <td class="small"><?php echo $print->display_name; ?></td>
+            <td class="small"><?php echo number_format($print->pendapatan,2,",","."); ?></td>
+            <td class="small"><?php echo number_format($print->hpp,2,",","."); ?></td>
+            <td class="small"><?php echo number_format($print->gross_profit,2,",","."); ?></td>
+            <td class="small"><?php echo number_format($print->operasional,2,",","."); ?></td>
+            <td class="small"><?php echo number_format($print->equity,2,",","."); ?></td>
+            <td class="small"><?php echo number_format($print->production,2,",","."); ?></td>
+            <td class="small"><?php echo number_format($print->marketing,2,",","."); ?></td>
           </tr>
           <?php
       	  }
