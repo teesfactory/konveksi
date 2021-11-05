@@ -45,7 +45,7 @@ function function_konveksi_bagi_hasil() {
 
                         ) b on a.no_transaksi = b.no_transaksi_ref
                     LEFT JOIN wp_users d on a.created_by = d.ID
-                    WHERE a.pos_code IN ('001','002')
+                    WHERE a.pos_code IN ('001','002') AND a.status_progress<>0
 				 ";
 
 		$total_query = "SELECT COUNT(1) FROM ($query) AS combined_table";
