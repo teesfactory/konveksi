@@ -7,6 +7,7 @@ include('controller/penjualan_controller.php');
 include('controller/pengeluaran_controller.php');
 include('controller/jurnal_controller.php');
 include('controller/tracking_controller.php');
+include('controller/bagi_hasil_controller.php');
 
 
 
@@ -29,15 +30,12 @@ function konveksi_master() {
 	}
 	
 	add_submenu_page('konveksi','Penjualan','Penjualan','edit_pages','konveksi-penjualan','function_konveksi_penjualan');
+	add_submenu_page('konveksi','Bagi Hasil','Bagi Hasil','edit_pages','konveksi-bagi-hasil','function_konveksi_bagi_hasil');
 	add_submenu_page('konveksi','Tracking Progress','Tracking Progress','edit_pages','konveksi-tracking-progress','function_konveksi_tracking_progress');
 
 }
 add_action('admin_menu','konveksi_master');
 
-
-// function function_konveksi_konfigurasi() {
-// 	echo "<h2>Test Konveksi Apps</h2>";
-// }
 
 function konveksi_form_simulasi_harga(){
     return 'Follow us on <a rel="nofollow" href="https://www.facebook.com/ThemeXpert/">Facebook</a>';
