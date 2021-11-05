@@ -64,7 +64,7 @@ function function_konveksi_pengeluaran() {
 
 		if ($page == 'belanja-kaos'){
 
-			$data['list-barang'] 	= $wpdb->get_results( "SELECT kode_barang AS id, nama_barang AS name FROM ". $table_barang . " WHERE pos_code IN ('3130','3141','3149') ORDER BY kode_barang");
+			$data['list-barang'] 	= $wpdb->get_results( "SELECT kode_barang AS id, nama_barang AS name FROM ". $table_barang . " WHERE pos_code IN ('3130','3141','3149','1511') ORDER BY kode_barang");
 			$data['judul'] = 'Belanja Kaos';
 			$data['poscode'] = '003';
 		}
