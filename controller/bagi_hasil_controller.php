@@ -51,9 +51,9 @@ function function_konveksi_bagi_hasil() {
 		$total_query = "SELECT COUNT(1) FROM ($query) AS combined_table";
 		$total = $wpdb->get_var( $total_query );
 
-		$results = $wpdb->get_results( $query.' ORDER BY dateline DESC LIMIT '. $offset.', '. $items_per_page, OBJECT );
-
-	  	 require_once(ABSPATH . 'wp-content/plugins/konveksi/view/bagi_hasil/index.php');
+		$results = $wpdb->get_results( $query.' ORDER BY tanggal_transaksi DESC LIMIT '. $offset.', '. $items_per_page, OBJECT );
+        
+        require_once(ABSPATH . 'wp-content/plugins/konveksi/view/bagi_hasil/index.php');
     
 
 }
