@@ -21,9 +21,9 @@
           <th width="5%">Pendapatan</th>
           <th width="5%">HPP</th>
           <th width="10%">Gross Profit</th>
-          <th width="5%">Operator</th>
+          <th width="5%">Operations</th>
           <th width="5%">Equity</th>
-          <th width="5%">Production</th>
+          <th width="5%">Operator</th>
           <th width="5%">Marketing</th>
         
         </tr>
