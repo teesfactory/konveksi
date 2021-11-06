@@ -42,7 +42,8 @@ function function_konveksi_bagi_hasil() {
                         WHERE pos_code IN ('003','004','005') AND B.no_transaksi_ref IN (
                         SELECT xx.no_transaksi FROM wp_konveksi_apps_transaksi_header xx WHERE pos_code IN ('001','002')
                         )
-
+                        GROUP BY
+                        no_transaksi_ref
                         ) b on a.no_transaksi = b.no_transaksi_ref
                     LEFT JOIN wp_users d on a.created_by = d.ID
                     WHERE a.pos_code IN ('001','002') AND a.status_progress<>0
