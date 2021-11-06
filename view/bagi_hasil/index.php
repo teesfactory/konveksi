@@ -23,8 +23,8 @@
           <th width="10%">Gross Profit</th>
           <th width="5%">Operations</th>
           <th width="5%">Equity</th>
-          <th width="5%">Operator</th>
           <th width="5%">Marketing</th>
+          <th width="5%">Operator</th>
         
         </tr>
       </thead>
@@ -43,8 +43,8 @@
             <td class="small"><?php echo number_format($print->gross_profit,2,",","."); ?></td>
             <td class="small"><?php echo number_format($print->operasional,2,",","."); ?></td>
             <td class="small"><?php echo number_format($print->equity,2,",","."); ?></td>
-            <td class="small"><?php echo number_format($print->production,2,",","."); ?></td>
             <td class="small"><?php echo number_format($print->marketing,2,",","."); ?></td>
+            <td class="small"><?php echo number_format($print->production,2,",","."); ?></td>
           </tr>
           <?php
       	  }
