@@ -41,7 +41,7 @@
 		$total = $wpdb->get_var( $total_query );
 
 		$results = $wpdb->get_results( $query.' ORDER BY dateline DESC LIMIT '. $offset.', '. $items_per_page, OBJECT );
-
+		//echo json_encode($results);
 	  	 require_once(ABSPATH . 'wp-content/plugins/konveksi/view/tracking/index.php');
 
 	}

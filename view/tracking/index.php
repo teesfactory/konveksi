@@ -77,7 +77,7 @@
             </td>
             <td class="small">
               <?php 
-                    if ( $print->pakcing == 0 ) {
+                    if ( $print->packing == 0 ) {
                       echo "<span class='dashicons dashicons-dismiss'  style='color:red'></span>";
                     }else{
                       echo "<span class='dashicons dashicons-yes-alt'  style='color:green'></span>";
