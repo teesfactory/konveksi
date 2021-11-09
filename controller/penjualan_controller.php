@@ -435,18 +435,17 @@ function function_konveksi_penjualan() {
 	  							  ");
 	  	$data['trx_detail']		= $wpdb->get_results( "
 									
-									SELECT 
+										SELECT 
 										atd.jumlah,
 										atd.kode_barang,
+										brg.nama_barang,
 										atd.keterangan,
-										atd.harga, 
-									    CONCAT('=A', @row_num:= @row_num + 1 , '*D' , @row_num:= @row_num  ) as subtotal
-									FROM 
-									    wp_konveksi_apps_transaksi_header AS ath, 
-									    (SELECT @row_num:= 0 AS num) AS c,
-									    wp_konveksi_apps_transaksi_detail atd 
-									WHERE ath.no_transaksi = atd.no_transaksi 
-											AND ath.id_transaksi='".$id."'
+										atd.harga
+									FROM wp_konveksi_apps_transaksi_header ath
+									LEFT JOIN wp_konveksi_apps_transaksi_detail atd ON ath.no_transaksi = atd.no_transaksi
+									LEFT JOIN wp_konveksi_apps_barang brg ON atd.kode_barang = brg.kode_barang
+									WHERE ath.id_transaksi='".$id."'
+									
 	  							  ");
 
 	  	

@@ -62,10 +62,10 @@ foreach ( $data['trx_detail'] as $detail ){
 $fileContent .="
     <tr>
         <td> " . $i . "</td>
-        <td> " . $detail->kode_barang . "</td>
+        <td> " . $detail->nama_barang . " <br> " . $detail->keterangan .  "</td>
         <td> " . $detail->jumlah . "</td>
-        <td> " . $detail->harga . "</td>
-        <td> " . $detail->jumlah * $detail->harga . "</td>
+        <td> " . number_format($detail->harga,2,",",".") . "</td>
+        <td> " . number_format($detail->jumlah * $detail->harga,2,",",".") . "</td>
     </tr>
 ";    
     
