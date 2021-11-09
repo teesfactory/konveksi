@@ -19,41 +19,41 @@ border-collapse: collapse;
 <br>
 <br>
 <br>
-<center>INVOICE</center>
+<center><b>INVOICE</b></center>
 
 <br>
 <table width='100%' border='1'>
 	<tr>
-		<td colspan='4' bgcolor='#cccccc'>INFORMASI ORDER</td>
+		<td colspan='4' bgcolor='#cccccc'><b>INFORMASI ORDER</b></td>
 	</tr>
 	<tr>
-		<td width='15%'>Hari/Tanggal</td>
+		<td width='15%'><b>Hari/Tanggal</b></td>
 		<td width='35%'></td>
-		<td width='15%'>No. Invoice</td>
+		<td width='15%'><b>No. Invoice</b></td>
 		<td width='35%'>" . $data['transaksi'][0]->no_transaksi . "</td>
 	</tr>
 	<tr>
-		<td width='15%'>Nama</td>
+		<td width='15%'><b>Nama</b></td>
 		<td width='35%'>" . $data['transaksi'][0]->nama . "</td>
-		<td width='15%'>No. Telp</td>
+		<td width='15%'><b>No. Telp</b></td>
 		<td width='35%'>" . $data['transaksi'][0]->no_telp . "</td>
 	</tr>
 	<tr>
-		<td width='15%'>Alamat</td>
+		<td width='15%'><b>Alamat</b></td>
 		<td width='85%' colspan='3'>" . $data['transaksi'][0]->alamat . "</td>
 	</tr>
 </table>
 <br>
 <table width='100%' border='1'>
 	<tr>
-		<td colspan='5' bgcolor='#cccccc'>DETAIL ORDER</td>
+		<td colspan='5' bgcolor='#cccccc'><b>>DETAIL ORDER</b></td>
 	</tr>
 	<tr>
-		<td width='5%'>No.</td>
-		<td width='50%'>Deskripsi</td>
-		<td width='5%'>Jml</td>
-		<td width='20%'>Satuan</td>
-		<td width='20%'>Subtotal</td>
+		<td width='5%'><b>No.</b></td>
+		<td width='70%'><b>Deskripsi</b></td>
+		<td width='5%'><b>Jml</b></td>
+		<td width='20%'><b>Satuan</b></td>
+		<td width='20%'><b>Subtotal</b></td>
 	</tr>
 ";
 $i = 1;
@@ -76,38 +76,38 @@ $fileContent .= "
 
 <tr>
 <td width='60%' colspan='3'></td>
-<td width='20%'>Subtotal</td>
-<td width='20%'> " . $data['transaksi'][0]->sub_total . " </td>
+<td width='20%'><b>Subtotal</b></td>
+<td width='20%'> " . number_format($data['transaksi'][0]->sub_total,2,",",".") . " </td>
 </tr>
 <tr>
 <td width='60%' colspan='3'></td>
-<td width='20%'>Biaya Pengiriman</td>
-<td width='20%'> " . $data['transaksi'][0]->biaya_pengiriman . " </td>
+<td width='20%'><b>Biaya Pengiriman</b></td>
+<td width='20%'> " . number_format($data['transaksi'][0]->biaya_pengiriman,2,",",".") . " </td>
 </tr>
 <tr>
 <td width='60%' colspan='3'></td>
-<td width='20%'>Biaya Lain</td>
-<td width='20%'> " . $data['transaksi'][0]->biaya_lain . " </td>
+<td width='20%'><b>Biaya Lain</b></td>
+<td width='20%'> " . number_format($data['transaksi'][0]->biaya_lain,2,",",".") . " </td>
 </tr>
 <tr>
 <td width='60%' colspan='3'></td>
-<td width='20%'>Potongan</td>
-<td width='20%'> " . $data['transaksi'][0]->potongan . " </td>
+<td width='20%'><b>Potongan</b></td>
+<td width='20%'> " . number_format($data['transaksi'][0]->potongan,2,",",".") . " </td>
 </tr>
 <tr>
 <td width='60%' colspan='3'></td>
-<td width='20%'>Total</td>
-<td width='20%'> " . $data['transaksi'][0]->total_akhir . " </td>
+<td width='20%'><b>Total</b></td>
+<td width='20%'> " . number_format($data['transaksi'][0]->total_akhir,2,",",".") . " </td>
 </tr>
 <tr>
 <td width='60%' colspan='3'></td>
-<td width='20%'>Pembayaran</td>
-<td width='20%'> " . $data['transaksi'][0]->total_pembayaran . " </td>
+<td width='20%'><b>Pembayaran</b></td>
+<td width='20%'> " . number_format($data['transaksi'][0]->pembayaran,2,",",".") . " </td>
 </tr>
 <tr>
 <td width='60%' colspan='3'></td>
-<td width='20%'>Sisa Pembayaran</td>
-<td width='20%'> " . $data['transaksi'][0]->sisa_pembayaran . " </td>
+<td width='20%'><b>Sisa Pembayaran</b></td>
+<td width='20%'> " . number_format($data['transaksi'][0]->sisa_pembayaran,2,",",".") . " </td>
 </tr>
 
 </table>
