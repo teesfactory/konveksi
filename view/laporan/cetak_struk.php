@@ -73,6 +73,43 @@ $i++;
 }
 
 $fileContent .= "
+
+<tr>
+<td width='60%' colspan='3'></td>
+<td width='20%'>Subtotal</td>
+<td width='20%'> " . $data['transaksi'][0]->sub_total . " </td>
+</tr>
+<tr>
+<td width='60%' colspan='3'></td>
+<td width='20%'>Biaya Pengiriman</td>
+<td width='20%'> " . $data['transaksi'][0]->biaya_pengiriman . " </td>
+</tr>
+<tr>
+<td width='60%' colspan='3'></td>
+<td width='20%'>Biaya Lain</td>
+<td width='20%'> " . $data['transaksi'][0]->biaya_lain . " </td>
+</tr>
+<tr>
+<td width='60%' colspan='3'></td>
+<td width='20%'>Potongan</td>
+<td width='20%'> " . $data['transaksi'][0]->potongan . " </td>
+</tr>
+<tr>
+<td width='60%' colspan='3'></td>
+<td width='20%'>Total</td>
+<td width='20%'> " . $data['transaksi'][0]->total_akhir . " </td>
+</tr>
+<tr>
+<td width='60%' colspan='3'></td>
+<td width='20%'>Pembayaran</td>
+<td width='20%'> " . $data['transaksi'][0]->total_pembayaran . " </td>
+</tr>
+<tr>
+<td width='60%' colspan='3'></td>
+<td width='20%'>Sisa Pembayaran</td>
+<td width='20%'> " . $data['transaksi'][0]->sisa_pembayaran . " </td>
+</tr>
+
 </table>
 </html>
 ";
