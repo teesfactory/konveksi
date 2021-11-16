@@ -26,7 +26,7 @@ function function_konveksi_pelanggan() {
 	  if (isset($_POST['newsubmit'])) {
 
 	  	$ls = $wpdb->get_var( "SELECT value_generic_master FROM ". $table_config . " WHERE jenis_generic_master='PREFIX_CODE_PELANGGAN'");
-		$total = $wpdb->get_var( "SELECT COUNT(1)+1 AS jum FROM ". $table_name . " WHERE tipe_account='PL'");
+		$total = $wpdb->get_var( "SELECT COUNT(1)+1 AS jum FROM ". $table_name);
 	  	$data['kode-pelanggan'] =  $total < 1000 ? $ls .'0'. $total   : $ls . $total ;
 	
 
