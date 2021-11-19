@@ -44,7 +44,15 @@
             <td class="small"><?php echo number_format($print->operasional,2,",","."); ?></td>
             <td class="small"><?php echo number_format($print->equity,2,",","."); ?></td>
             <td class="small"><?php echo number_format($print->marketing,2,",","."); ?></td>
-            <td class="small" <?php if ( $print->is_paid_operator == '1' ) { echo " style='bgcolor:green;'"; } ?> ><?php echo number_format($print->production,2,",","."); ?></td>
+            <td class="small">
+                              <?php 
+                                      if ( $print->is_paid_operator == '1' ) { 
+                                          echo '<span class="badge badge-pill badge-success">'. number_format($print->production,2,",",".") .'</span>';
+                                      } else {
+                                          echo '<span class="badge badge-pill badge-info">'. number_format($print->production,2,",",".") .'</span>';
+                                      }
+                              ?>
+            </td>
           </tr>
           <?php
       	  }
