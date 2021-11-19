@@ -44,7 +44,7 @@
             <td class="small"><?php echo number_format($print->operasional,2,",","."); ?></td>
             <td class="small"><?php echo number_format($print->equity,2,",","."); ?></td>
             <td class="small"><?php echo number_format($print->marketing,2,",","."); ?></td>
-            <td class="small"><?php echo number_format($print->production,2,",","."); ?></td>
+            <td class="small" <?php if ( $print->is_paid_operator == '1' ) { echo " style='bgcolor:green;'" } ?> ><?php echo number_format($print->production,2,",","."); ?></td>
           </tr>
           <?php
       	  }

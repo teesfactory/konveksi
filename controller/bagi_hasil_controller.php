@@ -27,8 +27,13 @@ function function_konveksi_bagi_hasil() {
                         a.total_akhir - IFNULL(b.hpp,0) as gross_profit,
                         (a.total_akhir - IFNULL(b.hpp,0)) * 0.3 as operasional,
                         (a.total_akhir - IFNULL(b.hpp,0)) * 0.25 as equity,
-                        (a.total_akhir - IFNULL(b.hpp,0)) * 0.25 as production,
-                        (a.total_akhir - IFNULL(b.hpp,0)) * 0.2 as marketing
+                        CASE
+                            WHEN is_share_operator = 1 THEN (a.total_akhir - IFNULL(b.hpp,0)) * 0.25 
+                            ELSE 0
+                        END as production,
+                        (a.total_akhir - IFNULL(b.hpp,0)) * 0.2 as marketing,
+                        is_paid_operator,
+                        is_paid_marketing
                     FROM wp_konveksi_apps_transaksi_header a
                     LEFT JOIN wp_konveksi_apps_transaksi_addinfo c on a.no_transaksi = c.no_transaksi
                     LEFT JOIN (
