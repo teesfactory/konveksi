@@ -47,6 +47,19 @@ function function_konveksi_pengeluaran() {
 					FROM $table_trx_header A
 					LEFT JOIN $table_trx_addinfo B ON A.no_transaksi = B.no_transaksi
 					WHERE A.pos_code IN ('003','004')
+
+					UNION ALL
+
+					SELECT
+						id_jurnal,
+						tanggal,
+						no_transaksi,
+						CONCAT(keterangan_1, ' ~ ', nama_masterjurnal) as keterangan,
+						nominal*-1 AS nominal,
+						0 as sisa_pembayaran
+					FROM wp_konveksi_acct_jurnal A
+					LEFT JOIN wp_konveksi_acct_masterjurnal B ON A.kode_master_jurnal = B.kode_masterjurnal
+					WHERE id_reference='006' AND sign='D'
 				 ";
 
 		$total_query = "SELECT COUNT(1) FROM (${query}) AS combined_table";
@@ -61,18 +74,23 @@ function function_konveksi_pengeluaran() {
 
 		$page = $_GET['pg'];
 		$data['active'] = 'class="current" aria-current="page"';
+		$data['masterjurnal'] 	= $wpdb->get_results( "SELECT * FROM ". $table_masterjurnal . " WHERE status=1");
 
 		if ($page == 'belanja-kaos'){
 
 			$data['list-barang'] 	= $wpdb->get_results( "SELECT kode_barang AS id, nama_barang AS name FROM ". $table_barang . " WHERE pos_code IN ('3130','3141','3149','1511') ORDER BY kode_barang");
 			$data['judul'] = 'Belanja Kaos';
 			$data['poscode'] = '003';
+
+			require_once(ABSPATH . 'wp-content/plugins/konveksi/view/pengeluaran/index.php');
 		}
 		else if ($page == 'belanja-bahan'){
 
 			$data['list-barang'] 	= $wpdb->get_results( "SELECT kode_barang AS id, nama_barang AS name FROM ". $table_barang . " WHERE pos_code IN ('1520') ORDER BY kode_barang");
 			$data['judul'] = 'Belanja Bahan';
 			$data['poscode'] = '004';
+			
+			require_once(ABSPATH . 'wp-content/plugins/konveksi/view/pengeluaran/index.php');
 
 		}
 		else if ($page == 'biaya-operasional-produksi'){
@@ -80,17 +98,67 @@ function function_konveksi_pengeluaran() {
 			$data['list-barang'] 	= $wpdb->get_results( "SELECT kode_barang AS id, nama_barang AS name FROM ". $table_barang . " WHERE pos_code IN ('4110','4120','4130','4210','4231','4232','4239') ORDER BY kode_barang");
 			$data['judul'] = 'Biaya Produksi & Operasional';
 			$data['poscode'] = '005';
+			
+			require_once(ABSPATH . 'wp-content/plugins/konveksi/view/pengeluaran/index.php');
 		}
 		else if ($page == 'transfer-kas'){
 
 			$data['list-barang'] 	= $wpdb->get_results( "SELECT kode_barang AS id, nama_barang AS name FROM ". $table_barang . " WHERE pos_code IN ('1100') ORDER BY kode_barang");
 			$data['judul'] = 'Transfer Kas';
 			$data['poscode'] = '006';
-		}
+			
+			require_once(ABSPATH . 'wp-content/plugins/konveksi/view/pengeluaran/transfer-kas.php');
+		}	  	
 
-	  	$data['masterjurnal'] 	= $wpdb->get_results( "SELECT * FROM ". $table_masterjurnal . " WHERE status=1");
 
-	  	require_once(ABSPATH . 'wp-content/plugins/konveksi/view/pengeluaran/index.php');
+
+	}
+	else if (isset($_POST['submit-kas'])){
+		
+		$ls 				= $wpdb->get_var( "SELECT value_generic_master FROM ". $table_config . " WHERE jenis_generic_master='PREFIX_CODE_TRANSAKSI'");
+		$users 				= $user->ID < 10 ? '0' . $user->ID : $user->ID ;
+
+		$tanggal 			= $_POST['tanggal'];
+		$dari 				= $_POST['dari'];
+		$ke		 			= $_POST['ke'];
+		$nominal			= $_POST['nominal'];
+		$keterangan 		= $_POST['keterangan'];
+		$poscode 			= $_POST['poscode'];
+		$notrx 				= $ls . '/' .$_POST['poscode']. '/' . $users . '/' . date('Ymd',strtotime($_POST['tanggal'])) . '/' .rand(10,99);
+		$created_by 		= $user->ID;
+		$created_at			= date('Y-m-d H:i:s');		
+		$query1		= "
+						INSERT INTO wp_konveksi_acct_jurnal
+							(tanggal, kode_master_jurnal, no_transaksi, id_reference, keterangan_1, keterangan_2, nominal, sign, created_by, created_at )
+						VALUES ( 
+									'". $tanggal ."', 
+									'". $dari ."', 
+									'". $notrx ."', 
+									'". $poscode ."', 
+									'SETOR KAS', 
+									'". $keterangan ."',  
+									'-". $nominal ."',
+									'D', 
+									'". $created_by ."',  
+									'". $created_at ."'
+						), 
+						( 
+									'". $tanggal ."', 
+									'". $ke ."', 
+									'". $notrx ."', 
+									'". $poscode ."', 
+									'SETOR KAS', 
+									'". $keterangan ."',  
+									'". $nominal ."',
+									'K', 
+									'". $created_by ."',  
+									'". $created_at ."'
+								)
+					  ";
+		//echo $query1 ;
+		$wpdb->query($query1);
+
+		echo "<script>location.replace('admin.php?page=konveksi-pengeluaran&pg=daftar');</script>";
 
 	}
 	else {
